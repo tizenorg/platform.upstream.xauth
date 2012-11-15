@@ -1282,8 +1282,11 @@ remove_entry(const char *inputfilename, int lineno, Xauth *auth, char *data)
     /*
      * unlink the auth we were asked to
      */
-    while (!eq_auth((list = *listp)->auth, auth))
+    while (!eq_auth((list = *listp)->auth, auth)) {
 	listp = &list->next;
+        if (!*listp)
+            return 0;
+    }
     *listp = list->next;
     XauDisposeAuth (list->auth);                    /* free the auth */
     free (list);				    /* free the link */
