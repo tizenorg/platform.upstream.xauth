@@ -1,3 +1,5 @@
+%bcond_with x
+
 Name:           xauth
 Version:        1.0.7
 Release:        1
@@ -13,6 +15,10 @@ BuildRequires:  pkgconfig(xau)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xmuu)
 BuildRequires:  pkgconfig(xorg-macros) >= 1.8
+
+%if !%{with x}
+ExclusiveArch:
+%endif
 
 %description
 The xauth program is used to edit and display the authorization
